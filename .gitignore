@@ -7,10 +7,10 @@
 
 # testing
 /coverage
-
+/src/config
 # production
 /build
-Fire.js
+config
 
 # misc
 .DS_Store

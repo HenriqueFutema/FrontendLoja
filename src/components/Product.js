@@ -35,24 +35,27 @@ export default class Product extends Component {
     this.setState({
       showModal1: false
     });
-    var status = {
+    var db = fire.firestore(fire);
+    db.collection("compras").add({
       usuario: this.state.user,
       produto: this.props.product.title,
+      categoria: this.props.product.category,
       cancelamento: 1
-    };
-    console.log(status);
+    });
   };
 
   handleCloseModal2 = () => {
     this.setState({
       showModal2: false
     });
-    var status = {
+
+    var db = fire.firestore(fire);
+    db.collection("compras").add({
       usuario: this.state.user,
       produto: this.props.product.title,
+      categoria: this.props.product.category,
       cancelamento: 2
-    };
-    console.log(status);
+    });
   };
 
   handleNextModal = () => {
@@ -65,17 +68,10 @@ export default class Product extends Component {
   handleComprar = async () => {
     const passwordC = await localStorage.getItem("password");
     const finalPassword = this.state.finalPassword;
-    console.log(passwordC, finalPassword);
 
     if (finalPassword === passwordC) {
       alert("Compra Efetuada");
-      var status = {
-        usuario: this.state.user,
-        produto: this.props.product.title,
-        categoria: this.props.product.category,
-        cancelamento: 0
-      };
-      console.log(status);
+
       this.setState({
         showModal1: false,
         showModal2: false

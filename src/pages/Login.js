@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
+import swal from "sweetalert";
 
 export default class Login extends Component {
   state = {
@@ -20,14 +21,14 @@ export default class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(function() {
-        alert("Logado!");
+        swal("Logado!", "Seja Bem Vindo", "success");
       })
       .catch(function(error) {
         errorCode = error.code;
         if (errorCode === "auth/user-not-found") {
-          alert("Usuário não encontrado");
+          swal("Usuário não encontrado", "Digite um email válido", "error");
         } else if (errorCode === "auth/wrong-password") {
-          alert("Senha incorreta");
+          swal("Senha incorreta", "Digite uma senha válida", "error");
         }
       });
     if (errorCode == null) {

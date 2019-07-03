@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./master.css";
 import fire from "../config/Fire";
+import swal from "sweetalert";
 
 export default class Product extends Component {
   state = {
@@ -70,7 +71,11 @@ export default class Product extends Component {
     const finalPassword = this.state.finalPassword;
 
     if (finalPassword === passwordC) {
-      alert("Compra Efetuada");
+      swal(
+        "Compra Efetuada",
+        "Adquira outros produtos na nossa loja",
+        "success"
+      );
 
       this.setState({
         showModal1: false,
@@ -84,7 +89,11 @@ export default class Product extends Component {
         cancelamento: 0
       });
     } else {
-      alert("Digite sua Senha");
+      swal(
+        "Digite sua Senha",
+        "Coloque sua senha para realizar a compra",
+        "success"
+      );
     }
   };
 

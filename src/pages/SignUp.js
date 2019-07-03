@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
+import swal from "sweetalert";
 
 export default class SignUp extends Component {
   state = {
@@ -11,7 +12,7 @@ export default class SignUp extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSigninSubmit = async e => {
+  handleSignUpSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
 
@@ -23,11 +24,15 @@ export default class SignUp extends Component {
         // Handle Errors here.
         errorCode = error.code;
         var errorMessage = error.message;
-        alert("Utilize o email e uma senha válida");
+        swal(
+          "Email ou Senha inválida",
+          "Digite um email e uma senha válida",
+          "error"
+        );
       });
 
     if (errorCode == null) {
-      alert("Criado com Sucesso!");
+      swal("Conta criada com sucesso!", "Efetue o login", "success");
       this.props.history.push("/");
     }
   };
@@ -43,7 +48,7 @@ export default class SignUp extends Component {
           <div className="col col-lg-4 pt-2 text-center border border-success rounded">
             <h1>SignUp</h1>
 
-            <form onSubmit={this.handleSigninSubmit}>
+            <form onSubmit={this.handleSignUpSubmit}>
               <div className="form-group">
                 <input
                   type="email"
